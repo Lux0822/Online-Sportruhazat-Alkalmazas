@@ -1,1 +1,1 @@
-# Online-Sportruhazat-Alkalmazas
+[a relative link](Dokumentáció.docx)
