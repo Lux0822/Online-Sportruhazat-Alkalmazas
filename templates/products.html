@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Termékek</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>{{ category|capitalize }} Termékek</h1>
+    </div>
+    <div class="nav">
+        <a href="{{ url_for('home', category='noi') }}">Női</a>
+        <a href="{{ url_for('home', category='ferfi') }}">Férfi</a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('cart') }}">Kosár</a>
+            <a href="{{ url_for('logout') }}">Kijelentkezés</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Bejelentkezés</a>
+            <a href="{{ url_for('register') }}">Regisztráció</a>
+        {% endif %}
+    </div>
+    <div class="products">
+        {% for product in products %}
+            <div class="product">
+                <img src="{{ url_for('static', filename='images/' ~ product.image_file) }}" alt="{{ product.name }}">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }} Ft</p>
+                <a href="{{ url_for('product_detail', product_id=product.id) }}">Részletek</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

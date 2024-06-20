@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Részletek</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}"><button>Kezdőképernyő</button></a>
+        <a href="{{ url_for('women') }}"><button>Női</button></a>
+        <a href="{{ url_for('men') }}"><button>Férfi</button></a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('cart') }}"><button>Kosár</button></a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button>Bejelentkezés</button></a>
+            <a href="{{ url_for('register') }}"><button>Regisztráció</button></a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h2 style="font-size: 35px; color: #725AC1;">{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p>Ár: {{ product.price }} Ft</p>
+        <img src="{{ url_for('static', filename='images/' + product.image_file) }}" alt="{{ product.name }}" style="max-width: 30%; height: auto;">
+        <form method="POST" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+            <div>
+                <label for="size">Méret:</label>
+                <select name="size" id="size">
+                    {% if product.item_category == 'cipő' %}
+                        {% for size in ['35', '36', '37', '38', '39', '40', '41', '42', '43'] %}
+                            <option value="{{ size }}">{{ size }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div>
+                <label for="quantity">Mennyiség:</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1">
+            </div>
+            <div>
+                <button type="submit">Kosárba</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

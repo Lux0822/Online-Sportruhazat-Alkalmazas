@@ -1,0 +1,48 @@
+<!-- add_to_cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kosárba helyezés</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Sport Ruhabolt</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}"><button>Kezdőképernyő</button></a>
+        <a href="{{ url_for('women') }}"><button>Női</button></a>
+        <a href="{{ url_for('men') }}"><button>Férfi</button></a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('cart') }}"><button>Kosár</button></a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button>Bejelentkezés</button></a>
+            <a href="{{ url_for('register') }}"><button>Regisztráció</button></a>
+        {% endif %}
+    </nav>
+    <h1>Kosárba helyezés</h1>
+    <div class="product-details">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p>{{ product.price }} Ft</p>
+        <picture>
+            <img src="{{ url_for('static', filename=product.image_file) }}" style="max-width: 100%; height: auto;">
+        </picture>
+        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
+            <label for="size">Méret:</label>
+            <select name="size" id="size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            <br>
+            <label for="quantity">Mennyiség:</label>
+            <input type="number" name="quantity" id="quantity" value="1" min="1">
+            <br>
+            <button type="submit">Kosárba helyezés</button>
+        </form>
+    </div>
+</body>
+</html>

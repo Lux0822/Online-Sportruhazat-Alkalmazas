@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kosár</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Kosár</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}"><button>Kezdőképernyő</button></a>
+        <a href="{{ url_for('women') }}"><button>Női</button></a>
+        <a href="{{ url_for('men') }}"><button>Férfi</button></a>
+    </nav>
+    <div class="container">
+        {% if items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Termék neve</th>
+                    <th>Kategória</th>
+                    <th>Méret</th>
+                    <th>Mennyiség</th>
+                    <th>Ár</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }} Ft</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('remove_from_cart', index=loop.index0) }}">
+                            <button type="submit">Törlés</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Összesen: {{ total_price }} Ft</h3>
+        <form method="POST" action="{{ url_for('checkout') }}">
+            <button type="submit">Rendelés leadása</button>
+        </form>
+        {% else %}
+        <p>A kosár jelenleg üres.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

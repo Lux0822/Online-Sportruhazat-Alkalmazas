@@ -1,0 +1,174 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+.header {
+    font-size: 2.75rem;
+    font-weight: 300;
+    letter-spacing: 0.195rem;
+    font-style: normal;
+    text-transform: none;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #725AC1;
+    border-radius: 0.15rem;
+    -webkit-border-radius: 0.15rem;
+    -moz-border-radius: 0.15rem;
+    padding: 0.3rem 0.4rem;
+    border-style: none;
+    border-width: 0rem;
+    border-color: #725AC1;
+}
+.welcome-message {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.nav a {
+    margin: 0 15px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.products-container {
+  max-width: 1200px; /* Maximális szélesség korlátozása */
+  margin: 0 auto; /* Középre igazítás oldal szélességében */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Rugalmas elrendezés, min. 300px szélességgel */
+  gap: 20px; /* Térköz a termékek között */
+  padding: 20px; /* Belső tér a konténer körül */
+}
+.product {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    width: calc(50% - 20px); /* Az oszlopok 50%-os szélessége minusz a margin */
+    box-sizing: border-box; /* A margin ne növelje az elem méretét */
+    text-align: center;
+}
+.product img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.product h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+.product p {
+    margin: 10px 0;
+}
+.product a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+button {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+button:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+label {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-style: normal;
+    text-transform: none;
+    color: #725AC1;
+    border-radius: 0.15rem;
+    -webkit-border-radius: 0.15rem;
+    -moz-border-radius: 0.15rem;
+    padding: 0.3rem 0.4rem;
+    border-style: none;
+    border-width: 0rem;
+    border-color: #725AC1;
+}
+@import "bourbon";
+
+body {
+	background: #eee !important;	
+}
+
+.wrapper {	
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}

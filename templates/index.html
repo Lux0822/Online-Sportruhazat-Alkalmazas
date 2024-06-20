@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Ruhabolt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Sportruházat</h1>
+    </header>
+    <nav style="text-align: center;">
+        <a href="{{ url_for('home') }}"><button>Kezdőképernyő</button></a>
+        <a href="{{ url_for('women') }}"><button>Női</button></a>
+        <a href="{{ url_for('men') }}"><button>Férfi</button></a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('cart') }}"><button>Kosár</button></a>
+            <a href="{{ url_for('logout') }}"><button>Kijelentkezés</button></a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button>Bejelentkezés</button></a>
+            <a href="{{ url_for('register') }}"><button>Regisztráció</button></a>
+        {% endif %}
+    </nav>
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div style="flex: 1;">
+            <picture>
+                <img src="{{ url_for('static', filename='images/kezdo1.jpg') }}" style="max-width: 100%; height: auto;">
+            </picture>
+        </div>
+        <div style="flex: 1; padding: 20px;">
+            <h2>Üdvözöljük az Online Sportruházat oldalán!</h2>
+            <p>Fedezze fel széles termékválasztékunkat nők és férfiak és számára. Vásároljon stílusos ruhákat a legújabb trendek szerint.</p>
+        </div>
+    </div>
+</body>
+</html>

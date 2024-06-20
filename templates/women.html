@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Női Ruhák</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>Sportruházat</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}"><button>Kezdőképernyő</button></a>
+        <a href="{{ url_for('women') }}"><button>Női</button></a>
+        <a href="{{ url_for('men') }}"><button>Férfi</button></a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('cart') }}"><button>Kosár</button></a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button>Bejelentkezés</button></a>
+            <a href="{{ url_for('register') }}"><button>Regisztráció</button></a>
+        {% endif %}
+    </nav>
+    <h1>Női Ruhák</h1>
+    <div class="products-container">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.price }} Ft</p>
+                <picture>
+                    <img src="{{ url_for('static', filename='images/' + product.image_file) }}" style="max-width: 100%; height: auto;">
+                </picture>
+                <a href="{{ url_for('product_detail', product_id=product.id) }}"><button>Részletek</button></a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
