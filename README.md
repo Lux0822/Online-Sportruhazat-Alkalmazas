@@ -1,1 +1,1 @@
-[a relative link](Dokumentáció.docx)
+[Dokumentáció](Dokumentáció.docx)
